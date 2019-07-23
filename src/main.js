@@ -25,13 +25,14 @@ import './lib/mui/css/mui.min.css'
 import './lib/mui/css/icons-extra.css'
 
 // 按需添加组件
-import { Header } from 'mint-ui';
+import { Header, Button } from 'mint-ui';
 Vue.component("mt-header", Header);
 // 轮播图swipe
 import { Swipe, SwipeItem } from 'mint-ui';
 import { func } from 'prop-types';
 Vue.component(Swipe.name, Swipe);
 Vue.component(SwipeItem.name, SwipeItem);
+Vue.component(Button.name, Button);
 
 
 var vm = new Vue({
