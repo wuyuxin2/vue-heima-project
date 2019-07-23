@@ -39,6 +39,7 @@ export default {};
 <style lang="scss" scoped>
 .app-container {
   padding-top: 40px;
+  padding-bottom: 40px;
   overflow-x: hidden; // 横向的超过部分 隐藏
 }
 .v-enter{
