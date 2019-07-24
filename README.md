@@ -90,4 +90,21 @@
 1. 图片列表需要使用懒加载技术，使用Mint-UI提供的现成组件 `lazy-load`
 2. 根据 `lazy-load`的使用文档，尝试使用
 3. 渲染图片列表数据
-4. info在img上方，img{position:relative},info{position:absolute;bottom:0}
+
+## <router-link :to="'/home/photoinfo/' + item.id" v-for="item in list" :key="item.id" tag="li"> 
+ + 因为使用表达式，所以属性 to 需要进行数据绑定 :to
+
+## 在methods写完api方法，要记得在created中调用
+
+##实现了 图片列表的 懒加载改造和样式美化
++ info在img上方，img{position:relative},info{position:absolute;bottom:0}
+
+## 实现了 点击图片 跳转到 图片详情页面
+1. 在改造 li 成 router-link 的时候，需要使用 tag 属性指定要渲染为 哪种元素
+
+## 实现 详情页面的布局和美化，同时获取数据渲染页面
+
+## 实现 图片详情中 需哦略图的功能
+1. 使用插件 vue-preview 这个缩略图插件
+2. 获取到所有的图片列表
+3. 注意：每个图片里面必须有 w 和 h 属性

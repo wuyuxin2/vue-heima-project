@@ -40,6 +40,12 @@ import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
 
+// A Vue Integrated PhotoSwipe Image Preview Plugin
+import VuePreview from 'vue-preview'
+// defalut install
+Vue.use(VuePreview)
+
+
 
 var vm = new Vue({
     el: "#app",
