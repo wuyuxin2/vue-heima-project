@@ -4,7 +4,7 @@
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter">
-      <div class="ball" v-show="ballFlag"></div>
+      <div class="ball" v-show="ballFlag" ref="ball"></div>
     </transition>
 
     <!-- 商品轮播图 -->
@@ -110,7 +110,23 @@ export default {
     },
     enter(el,done){
       el.offsetWidth;
-      el.style.transform = "translate(91px,230px)";
+
+      // 小球动画优化思路
+      // 1. 先分析导致 动画 不准确的 本质原因：我们把 小球 的最终位置写死了
+      // 2. 只要分辨率与 测试的时候不一样，或者滚动条有一定的距离，就有问题
+      // 3. 因此，我们经过分析，得到结论：不能把横纵坐标写死，应该动态计算这个坐标值
+      // 4. 解决思路：先得到徽标 的横纵，再得到小球的横纵坐标，然后 让x，y求差，得到的结果就是
+      // 5. 如何获取徽标和小球的位置？？？ domObject.getBoundingClientRect()
+      // 获取小球的位置
+      const ballPosition = this.$refs.ball.getBoundingClientRect();
+      // 获取徽标的位置
+      const badgePosition = document.getElementById("badge").getBoundingClientRect();
+
+      const xDist = badgePosition.left - ballPosition.left;
+      const yDist = badgePosition.top - ballPosition.top;
+
+      // ES6 的模版字符串 用 ``,而不是 ""
+      el.style.transform = `translate(${xDist}px,${yDist}px)`;
       el.style.transition = 'all 1s cubic-bezier(.39,.09,1,.18)'
       done()
     },
