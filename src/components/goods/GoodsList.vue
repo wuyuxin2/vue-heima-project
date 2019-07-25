@@ -75,7 +75,7 @@ export default {
       console.log(this);
       // this.$router.push( "/home/goodsinfo/" + id )
       // this.$router.push({ path: "/home/goodsinfo/" + id })
-      this.$router.push({ name: "goodsinfo", parms: { id } });
+      this.$router.push({ name: "goodsinfo", params: { id } });
     }
   }
 };
