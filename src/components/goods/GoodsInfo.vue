@@ -28,11 +28,17 @@
           </p>
           <p>
             购买数量：
-            <numbox></numbox>
+            <numbox @getcount="getSelectedCount"></numbox>
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
             <mt-button type="danger" size="small" @click="addToShopCar">加入购物车</mt-button>
+
+            <!-- 分析：如何实现加入购物车的时候，拿到 选择器的数量 -->
+            <!-- 1. 经过分析发现：按钮属于 goodsinfo 页面，数字属于 numerbox 组件 -->
+            <!-- 2. 由于涉及到了父子组件的嵌套了，所以，无法直接再 goodsinfo 页面中 获取到 选中的商品数量 -->
+            <!-- 3. 子组件向父组件传值了（时间调用机制） -->
+            <!-- 4. 事件调用的本质： 父向子传递方法，子调用这个方法，同时把 数据当作参数 传递给这个方法 -->
           </p>
         </div>
       </div>
@@ -66,7 +72,8 @@ export default {
       id: this.$route.params.id,
       lunbotu: [],
       goodsinfo: {},
-      ballFlag: false //控制小球显示与隐藏
+      ballFlag: false, //控制小球显示与隐藏
+      selectedCount: 1,
     };
   },
   components: {
@@ -132,7 +139,12 @@ export default {
     },
     afterEnter(el){
       this.ballFlag = !this.ballFlag;
-    } 
+    },
+    getSelectedCount(count){
+      // 子组件把 选中的 数量传递给父组件的时候，把选中的值保存到data上
+      this.selectedCount = count;
+      console.log("父组件拿到的数量为：" + this.selectedCount);
+    },
   }
 };
 </script>
