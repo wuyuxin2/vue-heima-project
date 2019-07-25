@@ -25,7 +25,7 @@
           </p>
           <p>
             <mt-button type="primary" size="small">立即购买</mt-button>
-            <mt-button type="danger" size="small">假如购物车</mt-button>
+            <mt-button type="danger" size="small">加入购物车</mt-button>
           </p>
         </div>
       </div>
@@ -42,8 +42,8 @@
         </div>
       </div>
       <div class="mui-card-footer">
-          <mt-button type="primary" size="large" plain>图文介绍</mt-button>
-          <mt-button type="danger" size="large" plain>商品评论</mt-button>
+        <mt-button type="primary" size="large" plain @click="goDesc(id)">图文介绍</mt-button>
+        <mt-button type="danger" size="large" plain @click="goComment(id)">商品评论</mt-button>
       </div>
     </div>
   </div>
@@ -80,12 +80,19 @@ export default {
         }
       });
     },
-    getGoodsInfo(){
-        this.$http.get("api/goods/getinfo/" + this.id).then(result => {
+    getGoodsInfo() {
+      this.$http.get("api/goods/getinfo/" + this.id).then(result => {
         if (result.body.status === 0) {
           this.goodsinfo = result.body.message[0];
         }
       });
+    },
+    goDesc(id) {
+      // 点击使用编程式导航跳转到 图文介绍页面
+      this.$router.push({ name: "goodsdesc", params: { id } });
+    },
+    goComment(id) {
+      this.$router.push({ name: "goodscomment", params: { id } });
     }
   }
 };
@@ -100,12 +107,11 @@ export default {
     font-size: 16px;
     font-weight: bold;
   }
-  .mui-card-footer{
-      display: block;
-      button{
-          margin: 10px 0;
-      }
-      
+  .mui-card-footer {
+    display: block;
+    button {
+      margin: 10px 0;
+    }
   }
 }
 </style>

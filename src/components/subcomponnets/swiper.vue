@@ -27,15 +27,6 @@ export default {
   height: 200px;
   .mint-swipe-item {
       text-align: center;
-    &:nth-child(1) {
-    //   background-color: red;
-    }
-    &:nth-child(2) {
-    //   background-color: blue;
-    }
-    &:nth-child(3) {
-    //   background-color: green;
-    }
     img {
     //   width: 100%;
       height: 100%;
