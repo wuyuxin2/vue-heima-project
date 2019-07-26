@@ -4,8 +4,8 @@
     <input
       id="test"
       class="mui-input-numbox"
-      type="number"
-      value="1"
+      type="input"
+      :value="initcount"
       @change="countChanged"
       ref="numbox"
     />
@@ -18,6 +18,7 @@
 import mui from "../../lib/mui/js/mui.min.js";
 
 export default {
+  props:["initcount"],
   mounted() {
     // 初始化数字选择框
     mui(".mui-numbox").numbox();

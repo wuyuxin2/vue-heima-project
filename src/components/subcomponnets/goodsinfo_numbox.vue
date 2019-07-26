@@ -6,7 +6,7 @@
     <input
       id="test"
       class="mui-input-numbox"
-      type="number"
+      type="input"
       value="1"
       @change="countChanged"
       ref="numbox"
