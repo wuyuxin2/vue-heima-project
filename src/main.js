@@ -53,7 +53,17 @@ var store = new Vuex.Store({
             // 当修改完商品数量，把最新的数量保存到本地存储中
             localStorage.setItem('car', JSON.stringify(state.car))
         },
-        
+        removeFormCar(state, id){
+            // 根据id，从store 中的购物车中删除对应的那条商品数据
+            state.car.some((item, i)=>{
+                if(item.id == id){
+                    state.car.splice(i, 1)
+                    return true
+                }
+            })
+            // 将删除完毕后的最新的购物车 储存在本地
+            localStorage.setItem('car', JSON.stringify(state.car))
+        }
     },
     getters: { // this.$store.getters.***
         // 相当于 计算属性，也相当于 filters
