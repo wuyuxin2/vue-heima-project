@@ -14,6 +14,7 @@ import GoodsDesc from './components/goods/GoodsDesc.vue'
 import GoodsComment from './components/goods/GoodsComment.vue'
 // 创建路由对象
 var router = new VueRouter({
+    // mode:'history',
     routes: [
         { path: '/', redirect: '/home' },
         { path: '/home', component: HomeContainer },
