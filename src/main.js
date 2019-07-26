@@ -6,6 +6,47 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 import router from './router.js'
 
+// 注册 Vuex 
+import Vuex from 'vuex';
+Vue.use(Vuex)
+var store = new Vuex.Store({
+    state:{ // this.$store.state.***
+        car: [] //将 购物车中的商品用一个数组存储起来，存储一些商品的对象，可以将商品对象设计成这个样子：
+        // { id:商品的id, count:要购买的数量, price:商品的单价, selected:false }
+    },
+    mutations:{ // this.$store.commit('方法的名称','按需传入唯一的参数')
+        addToCar(state, goodsinfo){
+            // 点击加入购物车，把商品信息，保存到 store 中的 car 上
+            // 分析： 
+            // 1. 如果购物车中，之前就已经有这个对应的商品了，那么只要更新数量就行了
+            // 2. 如果没有，则直接把 商品数据，push 到 car 中即可
+            var flag = false
+
+            state.car.some(item => {
+                if(item.id == goodsinfo.id){
+                    item.count += parseInt(goodsinfo.count)
+                    flag = true
+                    return true
+                }
+            })
+            // 如果循环完毕，得到的flag还是false，则把商品数据直接 push 到购物车中
+            if(!flag){
+                state.car.push(goodsinfo)
+            }
+        }
+    },
+    getters:{ // this.$store.getters.***
+        // 相当于 计算属性，也相当于 filters
+        getAllCount(state){
+            var c = 0;
+            state.car.forEach(item => {
+                c += item.count
+            })
+            return c
+        }
+    }
+})
+
 import app from './App.vue'
 
 import VueResource from 'vue-resource'
@@ -50,5 +91,6 @@ Vue.use(VuePreview)
 var vm = new Vue({
     el: "#app",
     render: c => c(app),
-    router
+    router,
+    store
 })
