@@ -118,7 +118,7 @@ import app from './App.vue'
 import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // 设置请求的根路径
-Vue.http.options.root = 'http://www.liulongbin.top:3005';
+Vue.http.options.root = 'https://www.liulongbin.top:3005';
 // （post第三个参数）设置全局 post 时候表单数据格式组织形式 X-HTTP-Method-Override
 Vue.http.options.emulateHTTP = true;
 
