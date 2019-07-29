@@ -1,5 +1,7 @@
 # 这是一个Vue的项目
 ### 在线预览：https://wuyuxin2.github.io/vue-shop-heima-project/dist
+### clone到本地，npm install,npm i vue-router,npm run dev 
+
 ## 用心感受每一行代码中的诗情雅意。
 ### vscode快速git
 
