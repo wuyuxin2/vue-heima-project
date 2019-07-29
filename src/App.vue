@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="app-container">
     <!-- 顶部 Header 区域 -->
-    <mt-header fixed title="Vue 项目"></mt-header>
+    <mt-header fixed title="Vue 项目">
+      <span slot="left" @click="goBack" v-show="flag">
+        <mt-button icon="back">返回</mt-button>
+      </span>
+    </mt-header>
 
     <!-- 中间的 路由 router-view 区域 -->
     <transition>
@@ -33,7 +37,31 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      flag: false
+    }
+  },
+  created(){
+    // this.flag = this.$route.path === "/home" ? false : true
+  },
+  methods: {
+    goBack(){
+      this.$router.go(-1) //返回
+    }
+  },
+  // 监听url地址
+  watch:{
+    "$route.path":function(newVal){
+      if(newVal === "/home"){
+        this.flag = false
+      }else{
+        this.flag = true
+      }
+    } 
+  }
+  };
 </script>
 
 <style lang="scss" scoped>
@@ -42,18 +70,18 @@ export default {};
   padding-bottom: 50px;
   overflow-x: hidden; // 横向的超过部分 隐藏
 }
-.v-enter{
+.v-enter {
   opacity: 0;
   transform: translateX(100%); // 从右边进
   position: absolute; // 消除 向上位移 的动画
 }
-.v-leave-to{
+.v-leave-to {
   opacity: 0;
   transform: translateX(-100%); // 从左边消失
   position: absolute; // 消除 向上位移 的动画
 }
 .v-enter-active,
-.v-leave-active{
-  transition: all 0.5s ease
+.v-leave-active {
+  transition: all 0.5s ease;
 }
 </style>
