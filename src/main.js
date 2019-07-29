@@ -80,6 +80,13 @@ var store = new Vuex.Store({
                 o[item.id] = item.count
             })
             return o
+        },
+        getGoodsSelected(state){
+            var o = {}
+            state.car.forEach(item=>{
+                o[item.id] = item.selected
+            })
+            return o
         }
     }
 })
